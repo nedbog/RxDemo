@@ -4,11 +4,16 @@ namespace RxDemo
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            IObservable<int> xs = Observable.Range(1, 10);
+            IObservable<long> xs = Observable
+                .Timer(DateTimeOffset.Now.AddSeconds(1.5), TimeSpan.FromSeconds(0.5))
+                .Where(x => x % 2 == 0)
+                .Take(5);
 
+            xs.Subscribe(x => Console.WriteLine(x));
 
+            await new TaskCompletionSource<object>().Task;
         }
     }
 }
