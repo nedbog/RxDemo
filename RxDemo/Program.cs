@@ -1,10 +1,14 @@
-﻿namespace RxDemo
+﻿using System.Reactive.Linq;
+
+namespace RxDemo
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            IObservable<int> xs = Observable.Range(1, 10);
+
+
         }
     }
 }
